@@ -13,6 +13,7 @@ public class ShipMover : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float speed = 100;
     [SerializeField] float deceleration = 0.5f;
+    [SerializeField] float maxVelocityMag = 50;
     Vector2 currentVelocity;
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class ShipMover : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currentVelocity = (mousePosition - transform.position).normalized;
             rb.AddForce(currentVelocity * speed * Time.deltaTime);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity,maxVelocityMag);
             //TODO: Rotation
 
         }

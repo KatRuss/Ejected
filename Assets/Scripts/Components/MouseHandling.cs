@@ -7,6 +7,7 @@ public class MouseHandling : MonoBehaviour
 {
 
     ShipMover selectedObject;
+    [SerializeField] CameraController camCon;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +23,7 @@ public class MouseHandling : MonoBehaviour
                 selectedObject = targetObject.GetComponent<ShipMover>();
                 selectedObject.isSelected = true;
                 Debug.Log(selectedObject.isSelected);
+                camCon.SetTarget(selectedObject.transform);
             }
         }
 
